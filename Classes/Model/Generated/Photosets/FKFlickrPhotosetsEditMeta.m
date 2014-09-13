@@ -57,8 +57,8 @@
 	if(self.title) {
 		[args setValue:self.title forKey:@"title"];
 	}
-	if(self.description) {
-		[args setValue:self.description forKey:@"description"];
+	if(self.photosetDescription) {
+		[args setValue:self.description forKey:@"photosetDescription"];
 	}
 
     return [args copy];

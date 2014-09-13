@@ -58,7 +58,7 @@
 		[args setValue:self.title forKey:@"title"];
 	}
 	if(self.description) {
-		[args setValue:self.description forKey:@"description"];
+		[args setValue:self.galleryDescription forKey:@"galleryDescription"];
 	}
 
     return [args copy];

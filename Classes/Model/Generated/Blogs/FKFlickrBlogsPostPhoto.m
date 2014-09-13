@@ -39,9 +39,9 @@
 		valid = NO;
 		[errorDescription appendString:@"'title', "];
 	}
-	if(!self.description) {
+	if(!self.photoDescription) {
 		valid = NO;
-		[errorDescription appendString:@"'description', "];
+		[errorDescription appendString:@"'photoDescription', "];
 	}
 
 	if(error != NULL) {
@@ -64,8 +64,8 @@
 	if(self.title) {
 		[args setValue:self.title forKey:@"title"];
 	}
-	if(self.description) {
-		[args setValue:self.description forKey:@"description"];
+	if(self.photoDescription) {
+		[args setValue:self.description forKey:@"photoDescription"];
 	}
 	if(self.blog_password) {
 		[args setValue:self.blog_password forKey:@"blog_password"];

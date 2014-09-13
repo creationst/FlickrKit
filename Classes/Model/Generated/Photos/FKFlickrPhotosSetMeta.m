@@ -39,9 +39,9 @@
 		valid = NO;
 		[errorDescription appendString:@"'title', "];
 	}
-	if(!self.description) {
+	if(!self.photoDescription) {
 		valid = NO;
-		[errorDescription appendString:@"'description', "];
+		[errorDescription appendString:@"'photoDescription', "];
 	}
 
 	if(error != NULL) {
@@ -62,7 +62,7 @@
 		[args setValue:self.title forKey:@"title"];
 	}
 	if(self.description) {
-		[args setValue:self.description forKey:@"description"];
+		[args setValue:self.photoDescription forKey:@"photoDescription"];
 	}
 
     return [args copy];

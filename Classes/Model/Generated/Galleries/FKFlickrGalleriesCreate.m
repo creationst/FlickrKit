@@ -35,9 +35,9 @@
 		valid = NO;
 		[errorDescription appendString:@"'title', "];
 	}
-	if(!self.description) {
+	if(!self.galleryDescription) {
 		valid = NO;
-		[errorDescription appendString:@"'description', "];
+		[errorDescription appendString:@"'galleryDescription', "];
 	}
 
 	if(error != NULL) {
@@ -55,7 +55,7 @@
 		[args setValue:self.title forKey:@"title"];
 	}
 	if(self.description) {
-		[args setValue:self.description forKey:@"description"];
+		[args setValue:self.galleryDescription forKey:@"galleryDescription"];
 	}
 	if(self.primary_photo_id) {
 		[args setValue:self.primary_photo_id forKey:@"primary_photo_id"];
