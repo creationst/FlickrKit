@@ -174,8 +174,8 @@
 	
 	perms = [NSString stringWithFormat:@"&perms=%@", permissionString];
     
-	///http://www.flickr.com/services/oauth/authorize
-    NSString *URLString = [NSString stringWithFormat:@"http://www.flickr.com/services/oauth/authorize?oauth_token=%@%@", inRequestToken, perms];
+	///https://www.flickr.com/services/oauth/authorize
+    NSString *URLString = [NSString stringWithFormat:@"https://www.flickr.com/services/oauth/authorize?oauth_token=%@%@", inRequestToken, perms];
     return [NSURL URLWithString:URLString];
 }
 
@@ -199,7 +199,7 @@
 	
 	NSDictionary *paramsDictionary = @{@"oauth_callback": [url absoluteString]};
 	FKURLBuilder *urlBuilder = [[FKURLBuilder alloc] init];
-    NSURL *requestURL = [urlBuilder oauthURLFromBaseURL:[NSURL URLWithString:@"http://www.flickr.com/services/oauth/request_token"] method:FKHttpMethodGET params:paramsDictionary];
+    NSURL *requestURL = [urlBuilder oauthURLFromBaseURL:[NSURL URLWithString:@"https://www.flickr.com/services/oauth/request_token"] method:FKHttpMethodGET params:paramsDictionary];
 	
 	FKDUNetworkOperation *op = [[FKDUNetworkOperation alloc] initWithURL:requestURL];
 	[op sendAsyncRequestOnCompletion:^(NSURLResponse *response, NSData *data, NSError *error) {
@@ -259,7 +259,7 @@
     
 	NSDictionary *paramsDictionary = @{@"oauth_token": token, @"oauth_verifier": verifier};
 	FKURLBuilder *urlBuilder = [[FKURLBuilder alloc] init];
-    NSURL *requestURL = [urlBuilder oauthURLFromBaseURL:[NSURL URLWithString:@"http://www.flickr.com/services/oauth/access_token"] method:FKHttpMethodGET params:paramsDictionary];
+    NSURL *requestURL = [urlBuilder oauthURLFromBaseURL:[NSURL URLWithString:@"https://www.flickr.com/services/oauth/access_token"] method:FKHttpMethodGET params:paramsDictionary];
     
 	FKDUNetworkOperation *op = [[FKDUNetworkOperation alloc] initWithURL:requestURL];
 	[op sendAsyncRequestOnCompletion:^(NSURLResponse *response, NSData *data, NSError *error) {
@@ -454,6 +454,14 @@
 
 - (FKImageUploadNetworkOperation *) uploadImage:(UIImage *)image args:(NSDictionary *)args completion:(FKAPIImageUploadCompletion)completion {
 	FKImageUploadNetworkOperation *imageUpload = [[FKImageUploadNetworkOperation alloc] initWithImage:image arguments:args completion:completion];
+	[[FKDUNetworkController sharedController] execute:imageUpload];
+    return imageUpload;
+}
+
+- (FKImageUploadNetworkOperation *) uploadAssetURL:(NSURL *)assetURL args:(NSDictionary *)args completion:(FKAPIImageUploadCompletion)completion {
+	FKImageUploadNetworkOperation *imageUpload = [[FKImageUploadNetworkOperation alloc] initWithAssetURL:assetURL
+                                                                                               arguments:args
+                                                                                              completion:completion];
 	[[FKDUNetworkController sharedController] execute:imageUpload];
     return imageUpload;
 }
